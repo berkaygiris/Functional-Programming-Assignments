@@ -17,7 +17,10 @@ insertList :: [Word] -> Trie
 insertList = undefined
 
 search :: Word -> Trie -> Bool 
-search = undefined
+search []       t = end t
+search (x:xs)   t = case M.lookup x (children t) of
+                    Nothing -> False
+                    Just t' -> search xs t'
 
 getWords :: Trie -> [Word] 
 getWords = undefined
