@@ -40,9 +40,32 @@ menuItems = ["a) Add Word",
              "e) Exit",
              "Enter the action:"]
 
+getUserInput :: Trie -> IO ()
+getUserInput t = do
+    mapM_ print menuItems
+    key <- getLine
+    case key of
+      "a"     -> do
+        input <- getLine
+        getUserInput (insert input t)
+      "s"     -> do
+        input <- getLine
+        print(search input t)
+        getUserInput t
+      "f"     -> do
+        putStrLn "To be implemented"
+        getUserInput t
+      "p"     -> do
+        putStrLn "To be implemented"
+        getUserInput t
+      "e"     -> return ()
+      _       -> do
+        putStrLn "Wrong input"
+        getUserInput t
+
 main = do
     args <- getArgs
     content <- readFile (args !! 0)
     let line = lines content
     let t = insertList line
-    mapM_ print menuItems
+    getUserInput t
