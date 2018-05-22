@@ -31,3 +31,11 @@ getWords = undefined
 
 prefix :: Word -> Trie -> Maybe [Word]
 prefix = undefined
+
+menuItems :: [String]
+menuItems = ["a) Add Word",
+             "s) Search Word",
+             "f) Find words with prefix",
+             "p) Print all words",
+             "e) Exit",
+             "Enter the action:"]
