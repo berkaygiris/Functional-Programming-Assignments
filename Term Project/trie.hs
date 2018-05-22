@@ -18,7 +18,7 @@ insert (x:xs) t = let ts = children t
                          Just t' -> t { children = M.insert x (insert xs t') ts }
 
 insertList :: [Word] -> Trie 
-insertList = undefined
+insertList list = foldr insert empty list
 
 search :: Word -> Trie -> Bool 
 search []       t = end t
