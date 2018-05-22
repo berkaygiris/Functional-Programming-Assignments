@@ -39,3 +39,10 @@ menuItems = ["a) Add Word",
              "p) Print all words",
              "e) Exit",
              "Enter the action:"]
+
+main = do
+    args <- getArgs
+    content <- readFile (args !! 0)
+    let line = lines content
+    let t = insertList line
+    mapM_ print menuItems
