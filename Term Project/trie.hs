@@ -11,7 +11,11 @@ empty :: Trie
 empty = Trie { end = False, children = M.empty }
 
 insert :: Word -> Trie -> Trie
-insert = undefined
+insert []     t = t { end = True }
+insert (x:xs) t = let ts = children t
+                  in case M.lookup x ts of
+                         Nothing -> t { children = M.insert x (insert xs empty) ts }
+                         Just t' -> t { children = M.insert x (insert xs t') ts }
 
 insertList :: [Word] -> Trie 
 insertList = undefined
